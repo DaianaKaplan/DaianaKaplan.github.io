@@ -41,8 +41,41 @@
 
     <div>
         <h2> Firmware</h2>
-        <img src="code.JPG" width400>
-        <p> Code snippet controlling blinking lights.
+        <code>
+            <pre>
+                int led = 13;  //set variable led to 13
+                int led2 = 12; //set variable led2 to 12
+                int led3 = 11; //set variable led3 to 11
+                
+                
+                void setup() {            //sets up        
+                    pinMode(led, OUTPUT);   // initialize pin 13 as output
+                    pinMode(led2, OUTPUT);  // initialize pin 12 as output
+                    pinMode(led3, OUTPUT);  // initialize pin 11 as output
+                }
+                
+                void loop() {                // loop function runs over and over again
+                    digitalWrite(led, HIGH);   // turn the LED connected to pin 13 on 
+                    delay(200);               // wait for a .2 seconds
+                    digitalWrite(led, LOW);    // turn the LED off 
+                    delay(200);                // wait .2 seconds
+                
+                    digitalWrite(led, HIGH);   // turn LED connected to pin 13 on 
+                    delay(200);               // wait for .2 seconds
+                    digitalWrite(led, LOW);    // turn the LED off
+                    delay(200);                 // wait for .2 seconds
+                    
+                    digitalWrite(led2, HIGH);   //turn LED connected to pin 12 on
+                    delay(500);                 //wait .5 seconds
+                    digitalWrite(led2, LOW);    // turn LED off
+                    delay(50);                  //wait .5 seconds
+                
+                    digitalWrite(led3, HIGH);   //turn LED connected to pin 11 on
+                    delay(3000);                //wait 3 seconds
+                    digitalWrite(led3, LOW);    //turn LED off
+                    delay(1000);                // wait 1 second
+            </pre>
+        </code>
         </p>
     </div>
 
