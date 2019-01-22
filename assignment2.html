@@ -1,25 +1,81 @@
-<!DOCTYPE html> 
-<html> 
-    <head> 
-        <meta charset="utf-8"> 
-        <meta name="viewport" content="width=device-width, maximum-scale=1.0" />
+<!DOCTYPE html>
+<html>
 
-        <title>Example Student's HCDE 439 Physical Computing Page!</title> 
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, maximum-scale=1.0" />
 
-        <link href="style.css" media="screen" rel="stylesheet" type="text/css" />
+    <title>Example Student's HCDE 439 Physical Computing Page!</title>
 
-    </head> 
-    <body> 
+    <link href="style.css" media="screen" rel="stylesheet" type="text/css" />
 
-        <div class="header">
-            <h1>Example Student's Assignment 2!</h1>
-            <p>
-            <img src="red-panda.jpg" width=400></a>
-            </p>
-            <p>
+</head>
+
+<body>
+
+    <div class="header">
+        <h1>Daiana's Fading assignment! </h1>
+        <p>
+            <img src="fadegif.gif" width=400></a>
+        </p>
+        <p>
             Here is all the documentation for assignment 2!
-            </p>
-        </div>
-        
-    </body>
+        </p>
+    </div>
+
+    <div class="widebody">
+        <h2> Image of My Circuit</h2>
+        <img src="fade.jpg" width=400></a>
+        <p> This is a close up image of how I organized
+            my bread board.
+        </p>
+    </div>
+
+    <div>
+        <h2> Schematic</h2>
+        <img src="fadeschem.jpg" width400>
+        <p> Schematics including which values I chose for my resistors.
+            I went with 220 for both resistors because they satisfied
+            the needs of the LED as seen in assignment one. (see schematic picture
+            under assignment 1 for calculations.)
+        </p>
+    </div>
+
+    <div>
+        <h2> Firmware</h2>
+        <code>
+                <pre>
+                        const int buttonPin = 2;     // the number of the pushbutton pin
+                        const int ledPin =  13;      // the number of the LED pin
+                        int buttonState = 0;         // variable for reading the pushbutton status
+                        
+                        void setup() {
+                          pinMode(ledPin, OUTPUT); //sets pin 13 as output
+                          pinMode(buttonPin, INPUT); //sets pin 2 as input
+                        }
+                        
+                        void loop() {
+                        buttonState = digitalRead(buttonPin); //reads  stat of button
+                        
+                          // check if the pushbutton is pressed. If it is, the buttonState is HIGH:
+                          if (buttonState == HIGH) {
+                            for(int fade = 255; fade >= 0; fade -= 5){ // sets increments for brightness of led
+                              analogWrite(ledPin, fade); //led fades out at increments of 5
+                              delay(30); //delay .03 seconds
+                            }
+                            
+                          } else {  //if button is not pushed
+                            digitalWrite(ledPin, LOW); //turns LED off
+                          }
+                        }
+                </pre>
+            </code>
+        </p>
+    </div>
+
+</body>
+
+</html>
+</body>
+
 </html>
