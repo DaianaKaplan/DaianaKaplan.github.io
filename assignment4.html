@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, maximum-scale=1.0" />
+
+    <title>Daiana's HCDE 439 Physical Computing Page!</title>
+
+    <link href="style.css" media="screen" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body>
+
+    <div class="header">
+        <h1>Daiana's Assignment #4! </h1>
+        <p>
+            <img src="4gif.gif" width=200></a>
+        </p>
+        <p>
+            Here is all the documentation for assignment 4!
+        </p>
+    </div>
+
+    <div>
+        <p> </p>
+    </div>
+
+    <div class="widebody">
+        <h2> Image of My Circuit</h2>
+        <img src="4circuit.jpg" width=400></a>
+        <p> This is a close up image of how I organized
+            my bread board.
+        </p>
+    </div>
+
+    <div>
+        <h2> Schematic</h2>
+        <img src="4schem.jpg" width400>
+        <p> Schematics including which values I chose for my resistors. I chose a 10K resistor for the LED's and a
+            1k resistor for the photoresistor to make sure the current was low. (Calculations shown in image)
+
+        </p>
+    </div>
+
+    <div>
+        <h2> Firmware</h2>
+        <code>
+             <pre>
+                    
+                const int analogInPin = A0;  // Analog input pin that the potentiometer is attached to
+                const int analogOutPin = 10; // Analog output pin that the LED is attached to
+                
+                int sensorValue = 0;        // value read from the pot
+                int outputValue = 0;        // value output to the PWM (analog out)
+                
+                
+                void setup() {
+                  // initialize serial communications at 9600 bps:
+                  Serial.begin(9600);
+                  pinMode(analogInPin, INPUT); //sets A0 to input
+                  pinMode(analogOutPin, OUTPUT); //sets pin 10 to output
+                }
+                
+                void loop() {
+                  // read the analog in value:
+                  // limits values to specified range
+                  sensorValue = analogRead(analogInPin);
+                  // map it to the range of the analog out:
+                  outputValue = map(sensorValue, 8, 70, 0, 255);
+                  // change the analog out value:
+                  analogWrite(analogOutPin, outputValue);
+                
+                  //prints to serial moniter
+                  Serial.println(sensorValue);  
+                  Serial.print("OUTPUT VALUE: ");
+                  Serial.println(outputValue);
+                
+                  delay(2000); //delay
+                }
+
+                </pre>
+            </code>
+    </div>
+
+</body>
+
+</html>
+</body>
+
+</html>
