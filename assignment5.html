@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, maximum-scale=1.0" />
+
+    <title>Daiana Kaplan Assignment 5</title>
+
+    <link href="style.css" media="screen" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body>
+
+    <div class="widebody">
+        <h1> Motor! </h1>
+        <p>
+            <img src="5gif.gif" width=400></a>
+        </p>
+        <p>
+            My amazing creation. See below for documentation for assignment 5!
+        </p>
+    </div>
+
+    <div class="widebody">
+        <h2> Image of My Circuit</h2>
+        <img src="5circuit.jpg" width=400></a>
+        <p> This is a close up image of how I organized
+            my bread board.
+        </p>
+    </div>
+
+    <div>
+        <h2> Schematic</h2>
+        <img src="5schem.jpg" width400>
+        <p> Above are my Schematics. Also, the following is an explanation for why I chose 300 in my if statement for
+            my code. The joystick has a
+            range from 0 - 1024. From that I
+            calculated that when the joystick is centered it's y value is 512 and its x value is 512. Therefore, my if
+            statement says that anytime the
+            the Joystick's x value is ever less than 300 (and therefore far enought away from the center) than the
+            servo blade should change positions.
+        </p>
+    </div>
+
+    <div>
+        <h2> Firmware</h2>
+        <code>
+            <pre>
+                #include <Servo.h>
+                    Servo servo; //creates servo object
+                    
+                    int xPin = A1; //sets joystick xval to read from A1
+                    int yPin = A0; //sets joystick yval to read from A0
+                    int servo_pin = 10; //Servo motor attached to pin 10
+                    int xPos = 0; //initiates xPos to 0
+                    int yPos = 0; //initiates yPos to 0
+                    int newPos = 0; //initiates newPos to 0
+                    
+                    void setup ( ) {
+                      Serial.begin (9600) ; //initialize serial communications at 9600bps
+                      servo.attach (servo_pin ) ; //attaches servo to pin 10
+                    }
+                    
+                    void loop ( ) {
+                      xPos = analogRead (xPin) ; //reads x position of joystick
+                      yPos = analogRead (yPin) ; //reads y position of joystick
+                    
+                      delay(300); //delay 300ms
+                    
+                      if (xPos < 300) { //if x position of joystick is less than 300
+                        newPos = 90; //set newPosition to 90 degrees
+                        servo.write(90); //writes the servo to 90 degress
+                        Serial.println(newPos); //prints to serial moniter
+                      }
+                      else { //if x position of joystick is greater than 512
+                        newPos = 45; //sets newPosition to 45 degrees
+                        servo.write(45); //writes the servo to 45 degrees
+                        Serial.println(newPos); //prints to serial moniter
+                      }
+                      }                    
+            </pre>
+        </code>
+        </p>
+    </div>
+
+</body>
+
+</html>
