@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, maximum-scale=1.0" />
+
+    <title>Daiana Kaplan Assignment 6</title>
+
+    <link href="style.css" media="screen" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body>
+
+    <div class="widebody">
+        <h1> Datalogging! </h1>
+        <p>
+            <img src="6gif.gif" width=400></a>
+        </p>
+        <p>
+            My amazing creation. See below for documentation for assignment 6!
+        </p>
+    </div>
+
+    <div class="widebody">
+        <h2> Image of My Circuit</h2>
+        <img src="6circuit.jpg" width=400></a>
+        <p> This is a close up image of how I organized
+            my bread board. 5V is used as power and pin2 is used to read input from the button.
+        </p>
+    </div>
+
+    <div>
+        <h2> Schematic</h2>
+        <img src="6schem.jpg" width400>
+        <p> Above is my schematic for my circuit of a single button.
+        </p>
+    </div>
+
+    <div>
+        <h2> Arduino Firmware</h2>
+        <code>
+            <pre>
+                void setup() {
+                    Serial.begin(9600); //initialize serial communication at 9600bps
+                  }
+                  
+                  void loop() {
+                    int button = digitalRead(2); //reads button value at pin2
+                    Serial.println(button); //prints state of button
+                    delay(50); //delay by 50ms
+                  }            
+            </pre>
+        </code>
+        </p>
+    </div>
+
+    <div>
+        <h2> P5.js Code</h2>
+        <code>
+            <pre>
+var serial; // variable to hold an instance of the serialport library
+var portName = '/dev/ttyACM0' //rename to the name of your port
+var datain; //some data coming in over serial!
+var xPos = 0;
+
+
+function setup() {
+  serial = new p5.SerialPort();       // make a new instance of the serialport library
+  serial.on('list', printList);       // set a callback function for the serialport list event
+  serial.on('connected', serverConnected); // callback for connecting to the server
+  serial.on('open', portOpen);        // callback for the port opening
+  serial.on('data', serialEvent);     // callback for when new data arrives
+  serial.on('error', serialError);    // callback for errors
+  serial.on('close', portClose);      // callback for the port closing
+
+  serial.list();                      // list the serial ports
+  serial.open(portName);              // open a serial port
+  createCanvas(1200, 800);
+  background(0x08, 0x16, 0x40);
+}
+
+// get the list of ports:
+function printList(portList) {
+  // portList is an array of serial port names
+  for (var i = 0; i < portList.length; i++) {
+    // Display the list the console:
+    print(i + " " + portList[i]);
+  }
+}
+
+function serverConnected() {
+  print('connected to server.');
+}
+
+function portOpen() {
+  print('the serial port opened.')
+}
+
+function serialError(err) {
+  print('Something went wrong with the serial port. ' + err);
+}
+
+function portClose() {
+  print('The serial port closed.');
+}
+
+function serialEvent() {
+  if (serial.available()) {
+    datain = Number(serial.readLine());
+    //console.log(datain);
+  }
+}
+
+function graphData(newData) {
+  // map the range of the input to the window height:
+  var yPos = map(newData, 0, 255, 0, height);
+  // draw the line in a pretty color:
+  stroke(255, 0, 80);
+  line(xPos, height, xPos, height - yPos);
+  // at the edge of the screen, go back to the beginning:
+  if (xPos >= width) {
+    xPos = 0;
+    // clear the screen by resetting the background:
+    background(0x08, 0x16, 0x40);
+  } else {
+    // increment the horizontal position for the next reading:
+    xPos++;
+  }
+}
+
+function draw() {
+  background(0);
+  fill(255);
+
+  if (datain == 0) {
+    background(255, 204, 0);  //set background color
+    text("button pressed: NO", 30, 30);  //print text
+  } else {
+    background('red');  //set background color
+    text("button pressed: YES", 30, 30); //print text
+  }
+}        
+            </pre>
+        </code>
+        </p>
+    </div>
+
+</body>
+
+</html>
