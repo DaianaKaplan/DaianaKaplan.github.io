@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, maximum-scale=1.0" />
 
-    <title>Daiana Kaplan Final Project Ideas</title>
+    <title>Path Lighter!</title>
 
     <link href="style.css" media="screen" rel="stylesheet" type="text/css" />
 
@@ -14,17 +14,100 @@
 <body>
 
     <div class="widebody">
-        <h1> Final Project Ideas </h1>
+        <h1> Final Project! </h1>
         <p>
-            <img src="final1.jpg" width=400></a>
+            <img src="finalImage.jpg" width=400></a>
         </p>
         <p>
-            The idea behind this project will be to create a system to heat plants that need more heat in certain
-            environments and seasons. The product will work
-            similarly to drip irrigation though instead of distributing water, the system will distribute heat.
+            My amazing creation. See below for documentation on my final project!
         </p>
     </div>
 
+    <div class="widebody">
+        <video width="700" controls>
+            <source src="FinalVid.mp4" type="video/mp4">
+            <source src="FinalVid.ogg" type="video/ogg">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
+    <div class="widebody">
+        <h2> Image of My Circuit</h2>
+        <img src="FinalCircuit.png" width=400></a>
+        <p> This is a close up image of how I organized my circuit.
+        </p>
+    </div>
+
+    <div>
+        <h2> Schematic</h2>
+        <img src="FinalSchem.png" width400>
+        <p> Above is my schematic for my Path Lighter final project.
+        </p>
+    </div>
+
+
+    <div>
+        <h2> Arduino Code</h2>
+        <code>
+            <pre>
+int trigPin = 11;    // Trigger
+int echoPin = 12;    // Echo
+long duration, inches; //Initializes duration and inches variables
+int LED = 10; //Sets LED to pin 10
+ 
+void setup() {
+  Serial.begin (9600);   //Serial Port begin
+  //Define inputs and outputs
+  pinMode(trigPin, OUTPUT);
+  pinMode(echoPin, INPUT);
+  pinMode(LED, OUTPUT);
+}
+ 
+void loop() {
+  // The sensor is triggered by a HIGH pulse of 10 or more microseconds.
+  // Give a short LOW pulse beforehand to ensure a clean HIGH pulse:
+  digitalWrite(trigPin, LOW);
+  delayMicroseconds(5);
+  digitalWrite(trigPin, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trigPin, LOW);
+ 
+  // Read the signal from the sensor: a HIGH pulse whose
+  // duration is the time (in microseconds) from the sending
+  // of the ping to the reception of its echo off of an object.
+  pinMode(echoPin, INPUT);
+  duration = pulseIn(echoPin, HIGH);
+ 
+  // Convert the time into a distance
+  inches = (duration/2) / 74;   // Divide by 74 
+
+  //print inches detected onto serial monitor 
+  Serial.print(inches); 
+  Serial.print("in, ");
+  Serial.println();
+  
+  delay(250);
+
+  //if the sensor detects something further than 2 inches away 
+  //but less than 36 inches away
+  if (inches > 2 && inches < 36){ 
+    //Serial.println("In Range"); //test
+    digitalWrite(LED, HIGH);      //turn on LED's
+    delay(20000);                 //keeps the LED's on while the person is walking down the stairs
+  }
+
+  //if LED's don't detect anything within 2 - 80 inches
+  else {
+    digitalWrite(LED, LOW);       //turn off LED's
+    //Serial.println("NOO");      //test
+  }
+  
+
+}
+            </pre>
+        </code>
+        </p>
+    </div>
 
 
 </body>
