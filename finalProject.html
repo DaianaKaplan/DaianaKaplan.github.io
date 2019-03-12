@@ -19,35 +19,89 @@
             <img src="finalImage.jpg" width=400></a>
         </p>
         <p>
-            My amazing creation. See below for documentation on my final project!
+
         </p>
     </div>
 
     <div class="widebody">
+        <h2> Description & Technical Write-up</h2>
+        <p>
+            Path Lighter is a tool to help people safely navigate their home in the dark. The ultrasonic sensor
+            can
+            sense if someone walks by and
+            automaitcally lights up their pathway for them. This is great for people who need to walk down the
+            stairs in the middle of the night but don't want to turn on too many bright lights and completely wake
+            themselves up (or their roomates) - Path Lighter only
+            lights up what's necessary to be safe. <br> <br>The prototype works with an ultrasonic
+            sensor and an
+            LED light strip.
+            The ultrasonic sensor is set to sense if someone is within 2-36 inches away from it and lights up
+            the LED if someoene is sensed in that range (range can be modified if desired).
+            The LED will then stay on for about 20 seconds (time can be modified if path is longer) while the
+            user walks down the path. <br><br>
+
+            In this image you can see the power supply, the ultrasonic sensor enclosed in a box, the LED strip,
+            and the arduino and LED circuit which is also enclosed in a case.
+
+            <br><br> See below for more detail on my circit, schematic and arduino code.
+        </p>
+    </div>
+
+    <div class="widebody">
+        <h2> Demo Video</h2>
         <video width="700" controls>
             <source src="FinalVid.mp4" type="video/mp4">
             <source src="FinalVid.ogg" type="video/ogg">
             Your browser does not support the video tag.
         </video>
+        <p> In this video you can see the prototype at work. The ultrasonic sensor sensed a person was a approaching and
+            turned on the LED strip.
+            The video demonstrates how the prototype works both in the dark and when it is light (because the sensor is
+            ultrasonic and does not depend on light).
+            The prototype is located at the bottom of the stair case and the LED strip runs up the stairs. Please ignore
+            the cleaning spray on the stair case which is only used
+            to hold up the LED strip.
+        </p>
     </div>
 
     <div class="widebody">
         <h2> Image of My Circuit</h2>
         <img src="FinalCircuit.png" width=400></a>
-        <p> This is a close up image of how I organized my circuit.
+        <p> This is a close up image of how I organized my circuit. The final circuit was soldered together and enclosed
+            in appropriate boxes which can
+            be seen above in the prototype image. I used a 5K resistor for the LED strip to make sure the current was
+            low enough and wouldn't fry anything.
         </p>
     </div>
 
-    <div>
+    <div class="widebody">
         <h2> Schematic</h2>
         <img src="FinalSchem.png" width400>
-        <p> Above is my schematic for my Path Lighter final project.
+        <p> Above is my schematic for my Path Lighter final project. The LED strip is connected to power and the
+            transistor. The transistor is connected to a resistor (which connects to Pin 10), the LED strip, and to
+            ground.
+            Power is connected to the LED strip and to ground. <br> <br>
+
+            The ultrasonic sensor has 4 connections. VCC is connected to 5v on the arduino. GND on the sensor is
+            connected to GND on the arduino. TRIG on the sensor is connected to
+            pin 11 on the arduino and ECHO on the sensor is connected to pin12 on the arduino.
         </p>
     </div>
 
 
-    <div>
+
+    <div class="widebody">
         <h2> Arduino Code</h2>
+        <p> Below is the code used to control Path Lighter. The code begins by reading in data from the ultrasonic
+            sensor. That data is then
+            converted into inches (how many inches away the object is that the sensor is reading). Next, the inches are
+            used in an if statemnt to control
+            the LED's. If the sensor senses something between 2 and 36 inches then the LED's will stay on. Once on,
+            there will be a delay for 20 seconds
+            so that the lights stay on while the user is walking the path. If the sensor does not sense anything within
+            2 and 36 inches, than the lights will stay off.
+
+        </p>
         <code>
             <pre>
 int trigPin = 11;    // Trigger
